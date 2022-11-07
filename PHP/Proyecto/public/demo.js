@@ -1,115 +1,114 @@
-mostrar()
+mostrarDatos();
 
-function insertar() {
-
-    let banda = document.getElementById("artista").value
-    let genero = document.getElementById("tipo").value
-    let album = document.getElementById("album").value
-    let anyo = document.getElementById("año").value
-    let disco = document.getElementById("cd").value
-    let imagen = document.getElementById("img").value
+function insertar(){
 
     let nuevo = {
-        banda: banda,
-        genero: genero,
-        album: album,
-        anyo: anyo,
-        disco: disco,
-        imagen: imagen,
-    };
+    banda: document.getElementById("Banda").value,
+    genero: document.getElementById("Genero").value,
+    album: document.getElementById("Album").value,
+    anyo: document.getElementById("Año").value,
+    disco: document.getElementById("Disco").value,
+    img: document.getElementById("img").value
+    }
 
-        fetch("/artista", {
-            method: "PUT", 
-            headers: {
-                "Content-Type": "application/json",
-            },
-            body: JSON.stringify(nuevo), 
-        })
-        .then(function (respuesta) {
-            return respuesta.json();
-        }).
-        then (function (datos){
-            mostrar();
-        });
+   fetch("/artista", {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/JSON"
+        },
+        body: JSON.stringify(nuevo)
+    })
+    location.reload();
 }
 
-function editar() {
-    let banda = document.getElementById("editarArtista").value
-    let genero = document.getElementById("editarTipo").value
+function mostrarDatos(){
+    fetch("/artista", {
+        method: "GET",
+        headers: {
+            "Content-Type": "application/json"
+        },
+    })
+    .then((res) => res.json())
+    .then((data) => {
+        let tabla = `
+        <table border="2">
+        <tr>
+        <th colspan="6">ARTISTAS</th>
+        </tr>
+        <tr>
+            <th>BANDA</th>
+            <th>GENERO</th>
+            <th>ALBUM</th>
+            <th>AÑO</th>
+            <th>DISCO</th>
+            <th>FOTO</th>
+        </tr>`
+        for (let i = 0; i < data.length; i++){
+            tabla += `<tr>
+            <th>${data[i].banda}</th>
+            <th>${data[i].genero}</th>
+            <th>${data[i].album}</th>
+            <th>${data[i].anyo}</th>
+            <th>${data[i].Disco}</th>
+            <th>${data[i].vida}</th>
+            <th><img src="${data[i].img}" alt="planeta" width="100" height="100"></th>
+            `
+        }
+        tabla += `</table>`
+        document.getElementById("mostrarBanda").innerHTML = tabla;
+
+    })
+}
+
+function editar(){
+    let banda= document.getElementById("editarBanda").value
+    let genero = document.getElementById("editarGenero").value
     let album = document.getElementById("editarAlbum").value
     let anyo = document.getElementById("editarAño").value
-    let disco = document.getElementById("editarCd").value
+    let disco= document.getElementById("editarDisco").value
     let imagen = document.getElementById("editarImg").value
 
-    let nuevo1 = {
-        banda: banda,
-        genero: genero,
-        album: album,
-        anyo: anyo,
-        disco: disco,
-        imagen: imagen,
+    let objeto = {
+        banda,
+        genero,
+        album,
+        anyo,
+        disco,
+        imagen
     };
+
     fetch("/artista", {
         method: "PUT",
         headers: {
-            "Content-Type": "application/json",
+            "Content-Type": "application/json"
         },
-        body: JSON.stringify(nuevo1),
+        body: JSON.stringify(objeto),
     })
-        .then(function (respuesta) {
-            return respuesta.json();
-        }).
-        then(function (datos) {
-            mostrar();
-        });
+    .then((res) => res.json())
+    .then((data) => {
+        console.log(data)
+        location.reload()
+    })
+
 }
 
+function borrar(){
+    const artistas = document.getElementById("editarBanda").value
 
-function borrar() {
-    let banda = document.getElementById("bandaBorrar").value
-    let nuevo2 = {
-        banda: banda,
+    let borrando = {
+        artistas,
     };
 
     fetch("/artista", {
         method: "DELETE",
         headers: {
-            "Content-Type": "application/json",
+            "Content-Type": "application/json"
         },
-        body: JSON.stringify(nuevo2),
+        body: JSON.stringify(borrando),
+    }).then((res) => res.json())
+    .then((data) => {
+        console.log(data)
+        window.location.reload()
     })
-        .then(function (respuesta) {
-            return respuesta.json()
-        }).
-        then(function (datos) {
-            mostrar();
-        });
-}
 
-function mostrar() {
-    fetch("/artista", {
-        method: "GET",
-        headers: {
-            "Content-Type": "application/json",
-        }
-    })
-        .then(function (respuesta) {
-            return respuesta.json()
-        }).
-        then(function (datos) {
-            let mostrarBanda = "";
-            for (let i = 0; i < datos.length; i++) {
-                mostrarBanda += `
-            <div class="ficha" style="text-align: center; display: flex; flex-direction: column; background-color: rgb(212, 184, 168); border: 2px black solid; margin: 2px; padding: 2px">
-            <h3>${datos[i].banda}</h3>
-            <p> ${datos[i].genero}</p>
-            <p> ${datos[i].album}</p>
-            <p> ${datos[i].anyo}</p>
-            <p> ${datos[i].disco}</p>
-            <img src="${datos[i].imagen}" alt="imagen" width="500" height="600"> 
-            </div>
-            `
-            }
-            document.getElementById("melomano").innerHTML = mostrarBanda
-        })
 }
