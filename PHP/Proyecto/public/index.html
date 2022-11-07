@@ -1,37 +1,51 @@
-<DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/css/bootstrap.min.css">
     <title>Document</title>
 </head>
+
 <body>
-    <h5>Añadir nueva banda o artista</h5>
-    <input type="text" placeholder="Banda o artista" id="artista"/>
-    <input type="text" placeholder="Genero" id="tipo"/>
-    <input type="text" placeholder="Nombre de el album" id="album"/>
-    <input type="text" placeholder="Año de publicaiion" id="año"/>
-    <input type="text" placeholder="Disco cd" id="cd"/>
-    <input type="text" placeholder="imagen" id="img"/>
-    <button onclick="insertar()">Agregar</button>
+    <h1>Añadir Artistas</h1>
+    <input type="text" placeholder="artista" id="Banda" />
+    <input type="text" placeholder="tipo" id="Genero" />
+    <input type="text" placeholder="album" id="Album" />
+    <input type="text" placeholder="año" id="Año" />
+    <input type="text" placeholder="cd" id="Disco"/>
+    <input type="text" placeholder="Imagen" id="img" />
+    <button onclick="insertar()">Insertar</button>
+    <div>
+        <br>
+    </div>
 
-    <h5>Editar banda o artista</h5>
-    <input type="text" placeholder="Banda o artista" id="editarArtista"/>
-    <input type="text" placeholder="Genero" id="editarTipo"/>
-    <input type="text" placeholder="Nombre de el album" id="editarAlbum"/>
-    <input type="text" placeholder="Año de publicaiion" id="editarAño"/>
-    <input type="text" placeholder="Disco cd" id="editarCd"/>
-    <input type="text" placeholder="imagen" id="editarImg"/>
+    <h1>Artistas disponibles en la base de Datos</h1>
+    <div id="mostrarBanda"></div>
+    <div>
+        <br>
+    </div>
+    <h1>Editar artista</h1>
+    <p>Introduce el artista o banda a editar</p>
+    <input type="text" placeholder="artista" id="editarBanda" />
+    <p>Introduce los cambios</p>
+    <input type="text" placeholder="tipo" id="editarGenero" />
+    <input type="text" placeholder="album" id="editarAlbum" />
+    <input type="text" placeholder="año" id="editarAño" />
+    <input type="text" placeholder="cd" id="editarDisco"/>
+    <input type="text" placeholder="Imagen" id="editarImg" />
     <button onclick="editar()">Editar</button>
-
-    <h5>Borrar banda</h5>
-    <input type="text" placeholder="Banda" id="bandaBorrar"/>
     <button onclick="borrar()">Borrar</button>
 
-    <div id="melomano" style="display:flex; flex-direction: row; flex-wrap: wrap">
-        <h5>Listado de Bandas en el array</h5>
-    </div>
     <script src="./demo.js"></script>
+
+
+  
+
 </body>
+</html>
+</body>
+
 </html>
