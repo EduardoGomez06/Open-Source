@@ -1,85 +1,113 @@
-const express = require("express");
-const app = express();
+const express = require("express")
+const app = express()
 
-app.use(express.static("public")); 
-app.use(express.urlencoded({extended: false}));
-app.use(express.json());
+app.use(express.static("public"))
+app.use(express.urlencoded({extended: false}))
+app.use(express.json())
 
-let artista = [
-    {
-    banda: "Nirvana",
-    genero: "Rock (grunge)",
-    album: "Nevermind",
-    anyo: "1991",
-    disco: "https://www.foxmusica.uno/rock/nirvana",
-    imagen:"https://m.media-amazon.com/images/I/51V8DXLd72L.jpg"
-       
-    },
-   
-]
 
-app.get("/artista", (req, res) => {
-    res.send(artista)
+const mongodb = require("mongodb")
+let MongoClient = mongodb.MongoClient
+
+
+MongoClient.connect("mongodb://localhost:27017", function (err, client) {
+    if (err != null) {
+        console.log(err)
+        console.log("No se ha podido conectar con MongoDB")
+    } else {
+        app.locals.db = client.db("melomano")
+        console.log("MongoDB conectado correctamente")
+    }
 });
 
-app.post("/artista", (req, res) => {
-    let  nuevoArtista= {
+
+app.post('/artista', function(req, res) {
+
+    let datosRecibidos = {
+        banda: req.body.banda,
+        genero: req.body.genero,
+        album: req.body.album,
+        anyo: req.body.anyo,
+        disco: req.body.disco,
+        img: req.body.img
+    }
+
+    app.locals.db
+    .collection('artista')
+    .insertOne(
+        datosRecibidos,
+        function (err, respuesta){
+        if (err != null){
+            console.log(err);
+        } else {
+            console.log("añadido correctamente", respuesta)
+        }}
+    )
+});
+
+app.get("/artista", function (req, res){
+    app.locals.db
+    .collection('artista')
+    .find()
+    .toArray(
+        function (err, datos){
+            if (err != null){
+                console.log(err)
+            } else {
+                console.log(datos)
+                res.send(datos)
+            }
+        }
+    )
+}
+)
+
+app.put("/artista", function (req, res){
+    let modificacion = {
         banda: req.body.banda,
         genero: req.body.genero,
         album: req.body.album,
         anyo: req.body.anyo,
         disco: req.body.disco,
         imagen: req.body.imagen,
-    };
-    artista.push(nuevoArtista);
-    res.send(artista);
-});
+    }
 
-app.put("/artista", (req, res) => {
-    let banda = req.body.banda
-    let genero = req.body.genero
-    let album = req.body.album
-    let anyo = req.body.anyo
-    let disco = req.body.imagen
-    let imagen = req.body.imagen
-    let coincidencia = false
+    app.locals.db
+    .collection('artista')
+    .updateOne({  banda: modificacion.banda },
+        {
+            $set: {
+               genero: modificacion.genero,
+               album: modificacion.album,
+               anyo: modificacion.anyo,
+               disco: req.body.disco,
+               img: modificacion.imagen, 
+            },
+        },
+        function (err, datos) {
+            if (err != null ){
+                res.send(err)
+            } else {
+                res.send(datos)
+            }
+        }
+    )
+}
+)
 
-    for (let i = 0; i < artista.length; i++){
-        if (banda == artista[i].banda) {
-            artista[i].genero = genero
-            artista[i].album = album
-            artista[i].anyo = anyo
-            artista[i].disco = disco
-            artista[i].imagen = imagen
-            i = artista.length;
-            coincidencia = true;
-            // break;
+app.delete("/artista", function (req, res){
+    app.locals.db
+    .collection("artista")
+    .deleteMany({ banda: req.body.artistas }), function (err, data){
+        if (err != null){
+        console.log(err);
+        res.send(err);
+        } else {
+        console.log(data);
+        res.send(data);
         }
     }
+}
+)
 
-    if (coincidencia){
-            res.send({ mensaje: "Se ha editado correctamente"})
-    } else {
-        res.send({ mensaje: "Error al editar"})
-    }
-})
-
-app.delete("/artista", (req, res) => {
-    let banda = req.body.banda
-    let coincidencia = false
-
-    for (let i = 0; i < artista.length; i++){
-        if (banda == artista[i].banda){
-            artista.splice(i, 1)
-            coincidencia = true
-            i = artista.length
-        }
-    }
-
-    coincidencia
-    ? res.send(artista)
-    : res.send({ mensaje: "No existe este artista"})
-
-})
-
-app.listen(process.env.PORT || 3000);
+app.listen(process.env.PORT || 3000)
