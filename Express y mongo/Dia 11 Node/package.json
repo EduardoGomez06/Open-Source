@@ -1,0 +1,18 @@
+{
+  "name": "probando",
+  "version": "1.0.0",
+  "description": "primer proyecto utilizando npm",
+  "main": "index.js",
+  "scripts": {
+    "test": "probando"
+  },
+  "keywords": [
+    "programa",
+    "tonto"
+  ],
+  "author": "edu",
+  "license": "ISC",
+  "dependencies": {
+    "yodasay": "^1.1.9"
+  }
+}
