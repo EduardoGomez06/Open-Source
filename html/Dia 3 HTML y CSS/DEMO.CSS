@@ -1,0 +1,64 @@
+/*esto es un documento CSS. aqui incorporamos NORMAS
+de estilo. Es decir, que la caja llamada ¨caja1¨,
+por ejemplo sea de color rojo.
+*/
+
+* {
+    background-color:aquamarine;
+}
+
+h1 {
+    color: yellowgreen;
+    background-color: goldenrod;
+    border: 1px solid black;
+    height: fit-content;
+    width: fit-content;
+
+}
+
+p {
+    color:blue;
+}
+
+/* #hace referencia al ID*/
+
+#box1 {
+    background-color: blueviolet;
+}
+
+#box2 {background-color: bisque;
+}
+
+.bigbox{
+    background-color: antiquewhite;
+    border: 1px solid black;
+    margin: 10px;
+    height: fit-content;
+    width: fit-content;
+
+}
+.flex-container {
+    display: flex;
+    flex-wrap: nowrap;
+    background-color: DodgerBlue;
+  }
+  
+  .flex-container > div {
+    background-color: #f1f1f1;
+    width: 100px;
+    margin: 50px;
+    text-align: center;
+    line-height: 100px;
+    font-size: 30px;
+  }
+
+  .box3 {
+    width: 100px;
+    height: 100px;
+    background: red;
+    transition: width 5s;
+  }
+  
+  div:hover {
+    width: 1000px;
+  }
