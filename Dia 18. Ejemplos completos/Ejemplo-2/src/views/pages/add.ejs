@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Añadir Pelicula</title>
+  </head>
+  <body>
+    <%- include('../pages/bloques/head') %> 
+    <%- include('../pages/bloques/header') %>
+  
+    <div class="container">
+   
+      <form action="/API/add" class="my-2" method="POST">
+        <input
+          type="Titulo"
+          placeholder="Ingrese titulo"
+          class="form-control my-2"
+          name="Titulo"
+        />
+        <input
+          type="text"
+          placeholder="Ingrese Director"
+          class="form-control my-2"
+          name="Director"
+        />
+        <input
+          type="text"
+          placeholder="Ingrese el año de estreno"
+          class="form-control my-2"
+          name="Estreno"
+        />
+        <input
+          type="text"
+          placeholder="Ingrese el presupuesto"
+          class="form-control my-2"
+          name="Presupuesto"
+        />
+        <input
+          type="text"
+          placeholder="Ingrese la Cronologia "
+          class="form-control my-2"
+          name="Cronología"
+        />
+
+        <button type="submit" class="btn btn-dark btn-sm">Agregar</button>
+        
+      </form>
+    </div>
+  </body>
+
+  <%- include('../pages/bloques/footer') %>
+</html>

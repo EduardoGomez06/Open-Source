@@ -1,0 +1,70 @@
+extends ../../node_modules/jade-bootstrap/_bootstrap
+
+block body
+  body.bg-image(style="background-image: url('https://i.pinimg.com/736x/4a/a9/9b/4aa99b6ad2d2cbc7cb04a41571885a8f.jpg');height: 100vh;")
+  nav.navbar.navbar-default.navbar-fixed-top.navbar-inverse
+    div.container
+      div.navbar-header
+        button.navbar-toggle.collapsed(type="button" data-toggle="collapse" data-target="#navbar-full" aria-expanded="false")
+          span.sr-only Toggle navigation
+          span.icon-bar
+          span.icon-bar
+          span.icon-bar
+      a.navbar-brand Star Wars
+      div.navbar-collapse.collapse(id="navbar-full")
+        ul.nav.navbar-nav.navbar-right
+          li
+            a(href="/")
+              span.menulabel.visible-md-inline.visible-lg-inline Home
+          li.dropdown
+            a.dropdown-toggle(href="#" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false")
+              span.menulabel.visible-md-inline.visible-lg-inline Personajes
+              span.caret 
+            ul.dropdown-menu
+              li: a(href="/Personajes") Lista Completa
+              li: a(href="/Personajes/Humanos") Humanos
+              li: a(href="/Personajes/Sith") Sith
+              li: a(href="/Personajes/Tatooine") Tatooine
+          li.dropdown
+            a.dropdown-toggle(href="#" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false")
+              span.menulabel.visible-md-inline.visible-lg-inline Peliculas
+              span.caret 
+            ul.dropdown-menu
+              li: a(href="/Peliculas") Lista Completa
+              li: a(href="/Peliculas/George") George Lucas
+              li: a(href="/Peliculas/Original") Trilogia Original
+              li: a(href="/Peliculas/Secuelas") Secuelas
+  div.EditView
+    .container(style= 'padding: 70px;')
+      .modal-dialog
+          .modal-content
+            .modal-header
+              h3#myModalLabel.modal-title
+                | Editar Pelicula
+            .modal-body
+              form(action='/Peliculas/Editar/' + Edit._id method='POST' class="px-4 py-3")
+                  .form-group
+                      label(for='Título') Título
+                      p
+                      input(type = 'text' name ='Título' placeholder ='Título' value=Edit.Título)
+                  .form-gorup
+                      label(for='Director') Director
+                      p
+                      input(type = 'text' name ='Director' placeholder ='Director' value=Edit.Director)
+                  .form-group
+                      label(for='Año_estreno') Año estreno
+                      p
+                      input(type = 'number' name ="Año_estreno" placeholder ='Año estreno' value=Edit.Año_estreno)
+                  .form-group
+                      label(for='Presupuesto') Presupuesto
+                      p
+                      input(type = 'text' name ="Presupuesto" placeholder ='Presupuesto' value=Edit.Presupuesto)
+                  .form-group
+                      label(for='Cronología') Cronología
+                      p
+                      input(type = 'text' name ='Cronología' placeholder ='Cronología' value=Edit.Cronología)
+                  .form-group
+                      label(for='Grupo') Grupo
+                      p
+                      input(type = 'text' name ='Grupo' placeholder ='Grupo' value=Edit.Grupo)
+                  button(type='submit') Editar 

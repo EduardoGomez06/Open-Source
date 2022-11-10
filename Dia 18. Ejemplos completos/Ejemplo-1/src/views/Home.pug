@@ -1,0 +1,51 @@
+extends ../../node_modules/jade-bootstrap/_bootstrap
+
+block body
+	body.bg-image(style="background-image: url('https://i.pinimg.com/736x/4a/a9/9b/4aa99b6ad2d2cbc7cb04a41571885a8f.jpg');height: 100vh;")
+	nav.navbar.navbar-default.navbar-fixed-top.navbar-inverse
+		div.container
+			div.navbar-header
+				button.navbar-toggle.collapsed(type="button" data-toggle="collapse" data-target="#navbar-full" aria-expanded="false")
+					span.sr-only Toggle navigation
+					span.icon-bar
+					span.icon-bar
+					span.icon-bar
+				a.navbar-brand Star Wars
+			div.navbar-collapse.collapse(id="navbar-full")
+				ul.nav.navbar-nav.navbar-right
+					li
+						a(href="#")
+							span.menulabel.visible-md-inline.visible-lg-inline Home
+					li.dropdown
+						a.dropdown-toggle(href="#" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false")
+							span.menulabel.visible-md-inline.visible-lg-inline Personajes
+							span.caret 
+						ul.dropdown-menu
+							li: a(href="/Personajes") Lista Completa
+							li: a(href="/Personajes/Humanos") Humanos
+							li: a(href="/Personajes/Sith") Sith
+							li: a(href="/Personajes/Tatooine") Tatooine
+					li.dropdown
+						a.dropdown-toggle(href="#" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false")
+							span.menulabel.visible-md-inline.visible-lg-inline Peliculas
+							span.caret 
+						ul.dropdown-menu
+							li: a(href="/Peliculas") Lista Completa
+							li: a(href="/Peliculas/Lucas") George Lucas
+							li: a(href="/Peliculas/Original") Trilogia Original
+							li: a(href="/Peliculas/Secuelas") Secuelas 
+	.container(style= 'padding: 70px; margin: 10')
+		.jumbotron
+			.card(style='width: 80rem;')
+				.card-bod
+					h2.card-title PAC3
+					h4.card-subtitle.mb-2.text-muted MongoDB + ExpressJS
+					p
+					| API simple creada con ExpressJS, con los siguientes elementos:
+					ul <p>
+						li Base de datos basada en la 
+							a(href="https://starwars.fandom.com/es/wiki/Portada") wiki de Star Wars 
+							| y compartida a través de Mongo Atlas.
+						li Lectura, creación, modificación y eliminación de datos
+						li Navegacion entre diferentes páginas que agrupan dichos datos y colecciones
+						li Front-end sencillo con Pug y Bootstrap

@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Añadir Personaje</title>
+  </head>
+  <body>
+    <%- include('../pages/bloques/head') %> 
+    <%- include('../pages/bloques/header') %>
+  
+    <div class="container">
+    
+      <form action="/API/add2" class="my-2" method="POST">
+        <input
+          type="text"
+          placeholder="Ingrese nombre"
+          class="form-control my-2"
+          name="nombre"
+        />
+        <input
+          type="text"
+          placeholder="Ingrese Especie"
+          class="form-control my-2"
+          name="especie"
+        />
+        <input
+          type="text"
+          placeholder="Ingrese afiliacion"
+          class="form-control my-2"
+          name="afiliacion"
+        />
+        <input
+          type="text"
+          placeholder="nacimiento"
+          class="form-control my-2"
+          name="nacimiento"
+        />
+        <input
+          type="text"
+          placeholder="Ingrese el planeta natal "
+          class="form-control my-2"
+          name="planeta_natal"
+        />
+
+        <button type="submit" class="btn btn-dark btn-sm">Agregar</button>
+      </form>
+    </div>
+  </body>
+
+  <%- include('../pages/bloques/footer') %>
+</html>

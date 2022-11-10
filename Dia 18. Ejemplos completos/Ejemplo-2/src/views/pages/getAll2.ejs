@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Personajes</title>
+  </head>
+  <body>
+    <%- include('../pages/bloques/head') %>
+    <%-include('../pages/bloques/header') %>
+
+    <div class="container">
+    
+    <a class="btn btn-dark btn-sm" href="/API/add2">Añadir</a>  
+    <table class="table">
+      <thead>
+        <tr>
+          <th scope="col">Id#</th>
+          <th scope="col">Nombre</th>
+          <th scope="col">Especie</th>
+          <th scope="col">Afiliciaon</th>
+          <th scope="col">Nacimiento</th>
+          <th scope="col">Paneta natal</th>
+        </tr>
+      </thead>
+      <tbody>
+        <ul>
+          <% arrayPersonajes.forEach(function(personaje){ %>
+            <tr>
+                 <th scope="row"><%= personaje.id %></th>
+                 <td><%= personaje.nombre %></td>
+                 <td><%= personaje.especie %></td>
+                 <td><%= personaje.afiliacion %></td>
+                 <td><%= personaje.nacimiento %></td>
+                 <td><%= personaje.planeta_natal %></td>
+                  <td>
+                    <a
+                      class="btn btn-warning btn-sm"
+                      href="/api2/<%= personaje.id %>"
+                    >
+                    Editar
+                  </a>
+                  </td>
+                </tr>
+            </tr>
+          <% }); %>
+        </ul>
+      </tbody>
+    </table>
+  </div>
+  </body>
+  <%- include('../pages/bloques/footer') %>
+</html>

@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>PC3 - CRUD </title>
+  </head>
+  
+  <body style="background-attachment:fixet; background-size:cover" background="https://github.com/d-maza/PC3-CRUD-NODE-MONGODB/blob/main/doc/42-420250_star-wars-wallpaper-for-pc.png?raw=true">
+    
+    <%- include('../pages/bloques/head') %>
+    <%-include('../pages/bloques/header') %>
+    <div class="container">
+      <a href="/API/Busqueda/1"><button type="button" class="btn btn-outline-warning btn-sm">Ejercicio 1</button></a>
+      <a href="/API/Busqueda/2"><button type="button" class="btn btn-outline-warning btn-sm">Ejercicio 2</button></a>
+      <a href="/API/Busqueda/3"><button type="button" class="btn btn-outline-warning btn-sm">Ejercicio 3</button></a>
+      <a href="/API/Busqueda/4"><button type="button" class="btn btn-outline-warning btn-sm">Ejercicio 4</button></a>
+
+      <hr style="color:blanchedalmond"/>
+
+      <h4 style="color: rgb(95, 139, 95)">PRÁCTICA 3</h4>
+      <br />
+      <h6 style="color: rgb(189, 181, 148);">Creando una base de datos de Star Wars</h6>
+      
+      <br>
+        <p style="color: rgb(174, 174, 174)">
+        Vamos a diseñar una base de datos de Star Wars con MongoDB, utilizandode
+        guía de contenidos la página web https://starwars.fandom.com/es/wiki/Portada <br>
+      
+        Nos centraremos en la trilogía original. Crearemos una colección de
+        Personajes que incluya los diez que aparecen en la página web. Los
+        atributos que tendrán son los siguientes
+      </p>
+
+      <ul style="color: grey">
+        <li>Nombre</li>
+        <li>Especie</li>
+        <li>Afiliación</li>
+        <li>Planeta Natal</li>
+        <li>Nacimiento</li>
+      </ul>
+      <p style="color: rgb(174, 174, 174)">
+        La siguiente colección que haremos dentro de nuestra base de datos es de
+        las películas. Incluiremos las tres de la trilogía. Incluirá:
+      </p>
+      <ul style="color: grey">
+        <li>Título</li>
+        <li>Director</li>
+        <li>Año estreno</li>
+        <li>Presupuesto</li>
+        <li>Cronología</li>
+      </ul>
+      <p style="color: rgb(174, 174, 174)">Visualiza el resultado con Studio3T.</p>
+      <p style="color: rgb(174, 174, 174)">Ahora vamos a realizar varias consultas.</p>
+      <ol style="color: rgb(231, 229, 229)">
+        <li>Ejercicio: Buscar todos los humanos.</li>
+        <li>Ejercicio: Busca todos los sith.</li>
+        <li>Ejercicio: Busca los nacidos en Tatooine.</li>
+        <li>Ejercicio: Busca las películas cuyo director es George Lucas.
+        </li>
+      </ol>
+    </div>
+  </body>
+  <%- include('../pages/bloques/footer') %>
+</html>
+

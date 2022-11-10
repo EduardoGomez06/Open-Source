@@ -1,0 +1,94 @@
+extends ../../node_modules/jade-bootstrap/_bootstrap
+
+
+block body
+  body.bg-image(style="background-image: url('https://i.pinimg.com/736x/4a/a9/9b/4aa99b6ad2d2cbc7cb04a41571885a8f.jpg');height: 100vh;")
+  nav.navbar.navbar-default.navbar-fixed-top.navbar-inverse
+    div.container
+      div.navbar-header
+        button.navbar-toggle.collapsed(type="button" data-toggle="collapse" data-target="#navbar-full" aria-expanded="false")
+          span.sr-only Toggle navigation
+          span.icon-bar
+          span.icon-bar
+          span.icon-bar
+      a.navbar-brand Star Wars
+      div.navbar-collapse.collapse(id="navbar-full")
+        ul.nav.navbar-nav.navbar-right
+          li
+            a(href="/")
+              span.menulabel.visible-md-inline.visible-lg-inline Home
+          li.dropdown
+            a.dropdown-toggle(href="#" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false")
+              span.menulabel.visible-md-inline.visible-lg-inline Personajes
+              span.caret 
+            ul.dropdown-menu
+              li: a(href="/Personajes") Lista Completa
+              li: a(href="/Personajes/Humanos") Humanos
+              li: a(href="/Personajes/Sith") Sith
+              li: a(href="/Personajes/Tatooine") Tatooine
+          li.dropdown
+            a.dropdown-toggle(href="#" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false")
+              span.menulabel.visible-md-inline.visible-lg-inline Peliculas
+              span.caret 
+            ul.dropdown-menu
+              li: a(href="/Peliculas") Lista Completa
+              li: a(href="/Peliculas/Lucas") George Lucas
+              li: a(href="/Peliculas/Original") Trilogia Original
+              li: a(href="/Peliculas/Secuelas") Secuelas 
+  div.View.PersonajesView
+    .container(style= 'margin-top: 70px;')
+      .jumbotron
+        h2 Personajes
+        table#pickle.table.table-hover.table-striped.table-bordered
+          thead
+            tr
+              th Nombre
+              th Especie 
+              th Afiliacion 
+              th Planeta Natal 
+              th Nacimiento
+          tbody
+            each val in Lista
+              tr
+                td=val.Nombre 
+                td=val.Especie
+                td=val.Afiliacion
+                td=val.Planeta_Natal
+                td=val.Nacimiento
+                td 
+                  a(href='/Personajes/Editar/' + val._id) 
+                    +btn-sm-info("Editar")
+                td
+                  a(href='/Personajes/Eliminar/'+ val._id) 
+                    +btn-sm-danger("Eliminar")
+    .container
+      button.btn.btn-info(type='button' data-toggle='modal' data-target='#form' padding= "5px" size="Big") Añadir personaje
+    #form.modal.fade(tabindex='-1' role='dialog' aria-labelledby='EditarModal' aria-hidden='true')
+      .modal-dialog.modal-dialog-centered(role='document')
+        .modal-content
+          .modal-header.border-bottom-0
+            h3#exampleModalLabel.modal-title <b>Añadir personaje
+            button.close(type='button' data-dismiss='modal' aria-label='Close')
+            span(aria-hidden='true') 
+          form(action='/Personajes' method='POST')
+            .modal-body
+              .form-group
+                label(for='Nombre') Nombre
+                input#Nombre.form-control(type = 'text' name ='Nombre' placeholder ='Nombre')
+              .form-group
+                label(for='Especie') Especie
+                input#Especie.form-control(type = 'text' name ='Especie' placeholder ="Especie")
+              .form-group
+                label(for='Afiliacion') Afiliacion
+                input#Afiliacion.form-control(type = 'text' name ="Afiliacion" placeholder ="Afiliacion")
+              .form-group
+                label(for='Afiliacion') Otra Afiliacion
+                input#Afiliacion.form-control(type = 'text' name ="Afiliacion" placeholder ='Afiliacion')
+                small#AfiliacionHelp.form-text.text-muted En caso de estar afiliado a mas de un grupo
+              .form-group
+                label(for='Planeta_Natal') Planeta Natal
+                input#Planeta_Natal.form-control(type='text' name ="Planeta_Natal" placeholder="Planeta Natal")
+              .form-group
+                label(for='Nacimiento') Nacimiento
+                input#Nacimiento.form-control(type='text' name ="Nacimiento" placeholder="Fecha y lugar de acimiento")
+              button.btn.btn-success(type='submit') Crear Personaje

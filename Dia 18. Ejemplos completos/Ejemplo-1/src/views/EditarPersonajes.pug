@@ -1,0 +1,72 @@
+extends ../../node_modules/jade-bootstrap/_bootstrap
+
+block body
+  body.bg-image(style="background-image: url('https://i.pinimg.com/736x/4a/a9/9b/4aa99b6ad2d2cbc7cb04a41571885a8f.jpg');height: 100vh;")
+  nav.navbar.navbar-default.navbar-fixed-top.navbar-inverse
+    div.container
+      div.navbar-header
+        button.navbar-toggle.collapsed(type="button" data-toggle="collapse" data-target="#navbar-full" aria-expanded="false")
+          span.sr-only Toggle navigation
+          span.icon-bar
+          span.icon-bar
+          span.icon-bar
+      a.navbar-brand Star Wars
+      div.navbar-collapse.collapse(id="navbar-full")
+        ul.nav.navbar-nav.navbar-right
+          li
+            a(href="/")
+              span.menulabel.visible-md-inline.visible-lg-inline Home
+          li.dropdown
+            a.dropdown-toggle(href="#" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false")
+              span.menulabel.visible-md-inline.visible-lg-inline Personajes
+              span.caret 
+            ul.dropdown-menu
+              li: a(href="/Personajes") Lista Completa
+              li: a(href="/Personajes/Humanos") Humanos
+              li: a(href="/Personajes/Sith") Sith
+              li: a(href="/Personajes/Tatooine") Tatooine
+          li.dropdown
+            a.dropdown-toggle(href="#" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false")
+              span.menulabel.visible-md-inline.visible-lg-inline Peliculas
+              span.caret 
+            ul.dropdown-menu
+              li: a(href="/Peliculas") Lista Completa
+              li: a(href="/Peliculas/George") George Lucas
+              li: a(href="/Peliculas/Original") Trilogia Original
+              li: a(href="/Peliculas/Secuelas") Secuelas
+  div.EditView
+    .container(style= 'padding: 70px;')
+      .modal-dialog
+          .modal-content
+            .modal-header
+              h3#myModalLabel.modal-title
+                | Editar Personaje
+            .modal-body
+              form(action='/Personajes/Editar/' + Edit._id method='POST' class="px-4 py-3")
+                  .form-group
+                      label(for='Nombre') Nombre
+                      p
+                      input(type = 'text' name ='Nombre' placeholder ='Nombre' value=Edit.Nombre)
+                  .form-gorup
+                      label(for='Especie') Especie
+                      p
+                      input(type = 'text' name ='Especie' placeholder ='Especie' value=Edit.Especie)
+                  .form-group
+                      label(for='Afiliacion') Afiliacion
+                      p
+                      input(type = 'text' name ="Afiliacion" placeholder ='Afiliacion' value=Edit.Afiliacion[0])
+                  .form-group
+                      label(for='Afiliacion') Otra Afiliacion
+                      p
+                      input(type = 'text' name ="Afiliacion" placeholder ='Afiliacion' value=Edit.Afiliacion[1])
+                      br
+                      small#AfiliacionHelp.form-text.text-muted En caso de estar afiliado a mas de un grupo
+                  .form-group
+                      label(for='Planeta_Natal') Planeta Natal
+                      p
+                      input(type = 'text' name ='Planeta_Natal' placeholder ='Planeta Natal' value=Edit.Planeta_Natal)
+                  .form-group
+                      label(for='Nacimiento') Nacimiento
+                      p
+                      input(type = 'text' name ='Nacimiento' placeholder ='Nacimiento' value=Edit.Nacimiento)
+                  button(type='submit') Editar 

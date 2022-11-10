@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Peliculas</title>
+  </head>
+  <body>
+    <%- include('../pages/bloques/head') %>
+    <%-include('../pages/bloques/header') %>
+
+    <div class="container">
+    
+    <a class="btn btn-dark btn-sm" href="/API/add">Añadir</a>  
+    <table class="table">
+      <thead>
+        <tr>
+          <th scope="col">Id#</th>
+          <th scope="col">Título</th>
+          <th scope="col">Director</th>
+          <th scope="col">Presupuesto</th>
+          <th scope="col">Cronología</th>
+          <th scope="col">Año del estreno</th>
+        </tr>
+      </thead>
+      <tbody>
+        <ul>
+          <% arrayPeliculas.forEach(function(pelicula){ %>
+            <tr>
+                 <th scope="row"><%= pelicula.id %></th>
+                 <td><%= pelicula.Titulo %></td>
+                 <td><%= pelicula.Director %></td>
+                 <td><%= pelicula.Presupuesto %></td>
+                 <td><%= pelicula.Cronología %></td>
+                 <td><%= pelicula.Estreno %></td>
+                  <td>
+                  
+                    <a
+                      class="btn btn-warning btn-sm"
+                      href="/API/<%= pelicula.id %>"
+                    >
+                    Editar
+                  </a>
+                  
+                  </td>
+                </tr>
+            </tr>
+          <% }); %>
+        </ul>
+      </tbody>
+    </table>
+  </div>
+  </body>
+  <%- include('../pages/bloques/footer') %>
+</html>

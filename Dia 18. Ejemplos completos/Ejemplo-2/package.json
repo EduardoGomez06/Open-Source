@@ -1,0 +1,18 @@
+{
+  "name": "curso_bakc_end",
+  "version": "1.0.0",
+  "description": "Ejercicio PC3",
+  "main": "src/app.js",
+  "scripts": {
+    "start": "node src/app"
+  },
+  "author": "David Maza",
+  "license": "ISC",
+  "dependencies": {
+    "body-parser": "^1.20.0",
+    "dotenv": "^16.0.1",
+    "ejs": "^3.1.8",
+    "express": "^4.18.1",
+    "mongoose": "^6.5.2"
+  }
+}

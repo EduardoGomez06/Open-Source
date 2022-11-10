@@ -1,0 +1,94 @@
+extends ../../node_modules/jade-bootstrap/_bootstrap
+
+block body
+  body.bg-image(style="background-image: url('https://i.pinimg.com/736x/4a/a9/9b/4aa99b6ad2d2cbc7cb04a41571885a8f.jpg');height: 100vh;")
+  nav.navbar.navbar-default.navbar-fixed-top.navbar-inverse
+    div.container
+      div.navbar-header
+        button.navbar-toggle.collapsed(type="button" data-toggle="collapse" data-target="#navbar-full" aria-expanded="false")
+          span.sr-only Toggle navigation
+          span.icon-bar
+          span.icon-bar
+          span.icon-bar
+      a.navbar-brand Star Wars
+      div.navbar-collapse.collapse(id="navbar-full")
+        ul.nav.navbar-nav.navbar-right
+          li
+            a(href="/")
+              span.menulabel.visible-md-inline.visible-lg-inline Home
+          li.dropdown
+            a.dropdown-toggle(href="#" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false")
+              span.menulabel.visible-md-inline.visible-lg-inline Personajes
+              span.caret 
+            ul.dropdown-menu
+              li: a(href="/Personajes") Lista Completa
+              li: a(href="/Personajes/Humanos") Humanos
+              li: a(href="/Personajes/Sith") Sith
+              li: a(href="/Personajes/Tatooine") Tatooine
+          li.dropdown
+            a.dropdown-toggle(href="#" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false")
+              span.menulabel.visible-md-inline.visible-lg-inline Peliculas
+              span.caret 
+            ul.dropdown-menu
+              li: a(href="/Peliculas") Lista Completa
+              li: a(href="/Peliculas/Lucas") George Lucas
+              li: a(href="/Peliculas/Original") Trilogia Original
+              li: a(href="/Peliculas/Secuelas") Secuelas 
+  div.View.SithView
+    .container(style= 'padding: 70px;')
+      .jumbotron
+        h2 Peliculas 
+        table#pickle.table.table-hover.table-striped.table-bordered
+          thead
+            tr
+              th Titulo
+              th Director 
+              th Año estreno 
+              th Presupuesto 
+              th Cronologia
+              th Grupo
+          tbody
+            each val in Lista
+              tr
+                td=val.Título
+                td=val.Director
+                td=val.Año_estreno
+                td=val.Presupuesto
+                td=val.Cronología
+                td=val.Grupo
+                td 
+                  a(href='/Peliculas/Editar/' + val._id) 
+                    +btn-sm-info("Editar")
+                td
+                  a(href='/Peliculas/Eliminar/'+ val._id) 
+                    +btn-sm-danger("Eliminar")
+    .container
+      button.btn.btn-info(type='button' data-toggle='modal' data-target='#form') Añadir pelicula
+    #form.modal.fade(tabindex='-1' role='dialog' aria-labelledby='EditarModal' aria-hidden='true')
+      .modal-dialog.modal-dialog-centered(role='document')
+        .modal-content
+          .modal-header.border-bottom-0
+            h3#exampleModalLabel.modal-title <b>Añadir pelicula
+            button.close(type='button' data-dismiss='modal' aria-label='Close')
+            span(aria-hidden='true') 
+          form(action='/Peliculas' method='POST')
+            .modal-body
+              .form-group
+                label(for='Título') Título
+                input#Nombre.form-control(type = 'text' name ='Título' placeholder ='Título')
+              .form-group
+                label(for='Director') Director
+                input#Especie.form-control(type = 'text' name ='Director' placeholder ="Director")
+              .form-group
+                label(for='Año_estreno') Año estreno
+                input#Anyo_estreno.form-control(type = 'number' name ="Año_estreno" placeholder ="Año estreno")
+              .form-group
+                label(for='Presupuesto') Presupuesto
+                input#Afiliacion.form-control(type = 'number' name ="Presupuesto" placeholder ='Presupuesto')
+              .form-group
+                label(for='Cronología') Cronología
+                input#Planeta_Natal.form-control(type='text' name ="Cronología" placeholder="Cronología")
+              .form-group
+                label(for='Nacimiento') Grupo
+                input#Nacimiento.form-control(type='text' name ="Grupo" placeholder="Grupo")
+              button.btn.btn-success(type='submit') Crear Pelicula

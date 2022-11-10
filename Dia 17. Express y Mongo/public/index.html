@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/css/bootstrap.min.css">
+    <title>Document</title>
+</head>
+<body>
+    <h1>Añadir planetas</h1>
+    <input type="text" placeholder="Nombre" id="nombre"/>
+    <input type="text" placeholder="LORE" id="lore"/>
+    <input type="text" placeholder="Sistema" id="sistema"/>
+    <input type="text" placeholder="¿Hay vida?" id="vida"/>
+    <input type="text" placeholder="Imagen" id="img"/>
+    <button onclick="insertar()">Insertar</button>
+    <div>
+        <br>
+    </div>
+
+    <h1>Planetas disponibles en la base de Datos</h1>
+    <div id="mostrarPlanetas"></div>
+    <div>
+        <br>
+    </div>
+    <h1>Editar planetas</h1>
+    <p>Introduce el planeta a editar</p>
+    <input type="text" placeholder="Nombre" id="editarPlaneta"/>
+    <p>Introduce los cambios</p>
+    <input type="text" placeholder="LORE" id="editarLore"/>
+    <input type="text" placeholder="Sistema" id="editarSistema"/>
+    <input type="text" placeholder="¿Hay vida?" id="editarVida"/>
+    <input type="text" placeholder="Imagen" id="editarImg"/>
+    <button onclick="editar()">Editar</button>
+    <button onclick="borrar()">Borrar</button>
+
+    <script src="./demo.js"></script>
+</body>
+</html>
