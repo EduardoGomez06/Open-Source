@@ -19,52 +19,51 @@ class Luchador
         $this->tipo = $tipo;
         $this->combate = $combate;
         $this->alimentar = 100;
-        $this->experiencia = 0;
-        $this->descanso = 0;
+        $this->experiencia = 1;
+        $this->descanso = 300;
         $this->vida = 100;
     }
 
-    function alimentar($tipoAlimento)
-    {
+    function alimentar($tipoAlimento){
         switch ($tipoAlimento) {
             case "Arroz":
                 $this->alimentar += 5;
                 $this->vida += 15;
-                $this->descanso +=5;
-                $this->experiencia = 1;
-                $this->peso +=1;
+                $this->descanso -=5;
+                $this->experiencia += 1;
+                $this->peso +=20;
                 break;
             case "Fruta":
                 $this->alimentar += 10;
                 $this->vida += 20;
-                $this->descanso += 10;
-                $this->experiencia = 2;
+                $this->descanso -= 5;
+                $this->experiencia += 2;
                 $this->peso +=1;
                 break;
             case "Carne":
                 $this->alimentar += 20;
                 $this->vida += 50;
-                $this->descanso += 20;
-                $this->experiencia = 5;
+                $this->descanso -= 5;
+                $this->experiencia += 5;
                 $this->peso +=1;
                 break;
             case "Pezcado":
                 $this->alimentar += 10;
                 $this->vida += 20;
-                $this->descanso += 5;  
-                $this->experiencia = 2;
+                $this->descanso -= 5;  
+                $this->experiencia += 2;
                 $this->peso +=1;
                 break;
             case "Chocolate":
                 $this->alimentar += 30;
                 $this->vida -= 30;
-                $this->descanso += 15;
-                $this->experiencia = 6;
+                $this->descanso -= 15;
+                $this->experiencia += 6;
                 $this->peso +=5; 
                 break;
             case "nada":
                 $this->vida += 0;
-                $this->descanso += 5;
+                $this->descanso -= 5;
                 $this->peso +=1; 
         }
         
@@ -76,15 +75,17 @@ class Luchador
             return $this->nombre . "no come nada, tiene hambre... </br> De hecho
             la vida del luchador es de... " . $this->vida;
         } else {
-            return  $this->nombre . ' está comiendo ' . $tipoAlimento . "
+            return  $this->nombre . ' está comiendo... ' . $tipoAlimento . "
         </br>
         la vida de  $this->nombre es de... " . $this->vida . "
         </br>
-        su peso es de... . $this->peso . </br>";
+        su peso es de... $this->peso . 
+        </br>
+        Su barra de energia es de... $this->descanso";
         } 
     }
 
-    function luchar($darGolpe){
+    function combate($darGolpe){
         switch ($darGolpe){
             case "Hit":
                 $this->descanso +=3;
@@ -131,44 +132,83 @@ class Luchador
     }
     
 
-    /*function luchar($darGolpe){
-        switch ($darGolpe){
-            case "Hit":
-                $this->vida += 15;
-                $this->descanso +=5;
-                $this->experiencia = 1;
-                $this->peso +=1;
-                break;
-            case "Fruta":
-                $this->vida += 20;
-                $this->descanso += 10;
-                $this->experiencia = 2;
-                break;
-            case "Carne":
-                $this->vida += 50;
-                $this->descanso += 20;
-                $this->experiencia = 5;
-                break;
-            case "Pezcado":
-                $this->vida += 20;
-                $this->descanso += 5;  
-                $this->experiencia = 2;
-                break;
-            case "Chocolate":
-                $this->vida -= 30;
-                $this->descanso += 15;
-                $this->experiencia = 6; 
-                break;
-            case "nada":
-                $this->vida += 0;
-                $this->descanso += 5; 
-        }
-    }*/
+    function entrenar($entrenoLuchador){
+     switch ($entrenoLuchador){
+                    case "saltar":
+                        $this->descanso -= 5;
+                        $this->experiencia += 2;
+                        $this->peso -= 1;
+                        break;
+                    case "saco":
+                        $this->descanso -= 10;
+                        $this->experiencia += 4;
+                        $this->peso -= 2;
+                        break;
+                    case "pesas":
+                        $this->descanso -= 20;
+                        $this->experiencia += 8;
+                        $this->peso -= 4;
+                        break;
+                    case "circuito":
+                        $this->descanso -= 40;
+                        $this->experiencia += 16;
+                        $this->peso -= 8;
+                        break;
+                    case "boxeo":
+                        $this->descanso -= 100;
+                        $this->experiencia += 35;
+                        $this->peso -= 12;
+                        break;
+        
+                }
+            }
 
-    function comprobarSalud()
-    {
-        if ($this->vida <= 0) {
-            return 'Ha muerto. 
+    function resultadoEntrenamiento(){
+        if ($this->entrenar = "saltar") {
+            echo "Tus resultados de entrenamiento son:
+            <br>",
+            "Aun te queda energia: .$this->descanso.
+            <br>",
+            "Has ganado: ".$this->experiencia."EXP
+            <br>";
+        } elseif ($this->entrenar = "saco") {
+            echo "Tus resultados de entrenamiento son:
+            <br>",
+            "Aun te queda energia: .$this->descanso.
+            <br>",
+            "Has ganado: ".$this->experiencia."EXP
+            <br>";
+        } elseif ($this->entrenar = "pesas") {
+            echo "Tus resultados de entrenamiento son:
+            <br>",
+            "Aun te queda energia: .$this->descanso.
+            <br>",
+            "Has ganado: ".$this->experiencia."EXP
+            <br>";
+        } elseif ($this->entrenar = "circuito") {
+            echo "Tus resultados de entrenamiento son:
+            <br>",
+            "Aun te queda energia: .$this->descanso.
+            <br>",
+            "Has ganado: ".$this->experiencia."EXP
+            <br>";
+        } elseif ($this->entrenar = "boxeo") {
+            echo "Tus resultados de entrenamiento son:
+            <br>",
+            "Aun te queda energia: .$this->descanso.
+            <br>",
+            "Has ganado: ".$this->experiencia."EXP
+            <br>";
+        } elseif ($this->descanso <= 0) {
+            return "Descansa un poco ";
+        } 
+    }
+    function comprobarSalud() {
+        if ($this->vida <= 0 || $this->peso >=150) {
+            return '<h2>Ha muerto</h2>
+            <figure>
+            <img src="https://i.gifer.com/TtTg.gif" height="240" widht="300"></img>
+            </figure> 
             <form action="#">
             <label for="resucitar">¿Lo resucitamos?:</label>
             <select name="resucitar" id="resucitar">
@@ -185,8 +225,17 @@ class Luchador
         }
     }
 
-    function empiezaLucha()
-    {
+    function descansar($dormir ){
+        switch ($dormir){
+            case "dormir":
+                $this->descanso += 100;
+                $this->alimentar -=75;
+        } if ($this->descanso == 300){
+            echo "Tu energia esta completa";
+        }
+    }
+
+    function empiezaLucha() {
         if ($this->vida >= 100) {
             return 'Empieza combate 
             <form action="#">
@@ -201,8 +250,31 @@ class Luchador
             ';
 
         } else {
-            return 'La salud del luchador es de '. $this->vida;
+            return 'La salud del luchador es de ' .$this->vida;
         }
     }
 
+    function imprimirInfo() {
+        echo 'barra de vida: ' .$this->vida;
+        echo '<br/>';
+        echo 'Luchador: ' .$this->nombre;
+        echo '<br/>';
+        echo 'Especialidad: ' .$this->tipo;
+        echo '<br/>';
+        echo 'Peso: ' .$this->peso;
+        echo '<br/>';
+        echo 'P.C.: ' .$this->combate;
+        echo '<br/>';
+        echo 'Estado: ' .$this->alimentar;
+        echo '<br/>';
+        echo 'EXP: ' .$this->experiencia;
+        echo '<br/>';
+        echo 'Energia: ' .$this->descanso;
+        echo '<br/>';
+        
+    }
+
+
 }
+
+        

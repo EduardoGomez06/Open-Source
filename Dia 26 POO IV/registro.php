@@ -11,14 +11,23 @@
 <div>
 <h1>LUCHADOR</h1>
     <h2>Qué quieres hacer?</h2>
-    <form method="post" action="empieza-lucha.php" action="respuesta-luchador.php">
+    <form method="post" action="empieza-lucha.php">
     <label for="luchar">¿Quieres luchar?:</label>
-    <button name="luchar" id="luchar"><a href="empieza-lucha.php">Empezar combate</button>
-    <br>
+    <button name="luchar" id="luchar">Empieza el combate</button>
+    </form>
+    <form method="post" action="alimentar-luchador.php">
     <label for="alimento">¿Lo alimentas?:</label>
-    <button name="alimento" id="alimento"><a href="respuesta-luchador.php">Empezar combate</button>
-        <input class="btn btn-primary" type="submit" name="enviar">
-        <input class="btn btn-primary" type="reset">
+    <button action="alimentar-luchador.php" name="alimento" id="alimento">Darle de comer</button>
+    </form>
+    <form method="post" action="entrenar-luchador.php">
+    <label for="entrenamiento">¿Quieres entrenar?:</label>
+    <button action="entrenar-luchador.php" name="entrenamiento" id="entrenamiento">Ir al GYM
+    </button>
+    </form>
+    <form method="post" action="descansar.php">
+    <label for="entrenamiento">Te vendria bien un descanso</label>
+    <button action="descansar.php" name="descanso" id="descansoo">Dormir
+    </button>
     </form>
 </body>
 </html>

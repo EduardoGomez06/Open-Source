@@ -2,23 +2,23 @@
 require("Luchador.php");
     session_start(); // iniciamos sesión
 
-if(isset($_SESSION['empezar'])){
-    $luchador = $_SESSION['empezar'];
+if(isset($_SESSION['luchador'])){
+    $luchador = $_SESSION['luchador'];
 }
 
 if(isset($_REQUEST['resucitar'])){  
-    $luchador = new Luchador("Kevin Ferguson(kimbo)", "Boxeo", "110.kg (242 lb)", "570Pc");
+    $luchador = new Luchador("Kevin Ferguson(kimbo)", "Boxeo", "110.kg", "570Pc");
 }
 
 
 // RECOGIDA DE DATOS
 $nombre = "";
-if(isset($_POST['empezar']) ){
-    $nombre = $_POST['luchar'];
+if(isset($_POST['luchador']) ){
+    $nombre = $_POST['lucha'];
 }
 
-if(isset($_POST['enviar'])){
-    $nombre = $_POST['luchar'];
+if(isset($_POST['combatir'])){
+    $nombre = $_POST['lucha'];
 }
 
 // CREACIÓN/INSTANCIA DEL OBJETO/*
@@ -30,6 +30,8 @@ if ($luchador->vida <= 0){
     session_destroy();
 
 }
+
+$_SESSION['luchador'] = $luchador;
 
 ?>
 
@@ -44,7 +46,22 @@ if ($luchador->vida <= 0){
 </head>
 <body>
 <div>
-    <?=$luchador->empiezaLucha()?>
+<center>
+<h1>LUCHADOR</h1>
+</br> 
+
+    </br> 
+    <figure>
+        <img src="https://media3.giphy.com/media/39BdMOJMK2YVqktnlS/giphy.gif" height="240" widht="300"></img>
+    </figure>
+    </center>
+</div>
+<div>
+        <?= $luchador->empiezaLucha(); ?>
+        </br>
+        <?= $luchador->comprobarSalud(); ?>
+    </div>
+<div>
     <form method="post" action="#">
     <label for="lucha">¿Cual es tu movimiento?:</label>
     <select name="lucha" id="lucha">
@@ -56,9 +73,10 @@ if ($luchador->vida <= 0){
             <option value="Quiet">Provocar</option>
         </select>
         </br>
-        <input class="btn btn-primary" type="submit" name="Empezar">
+        <input class="btn btn-primary" type="submit" name="combatir">
         <input class="btn btn-primary" type="reset">
     </form>
 </div>
+
 </body>
 </html>
